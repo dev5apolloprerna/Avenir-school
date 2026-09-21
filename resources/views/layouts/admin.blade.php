@@ -65,8 +65,11 @@
         ['admin.dashboard',               'bi-grid-1x2',        'Dashboard',         ['admin.dashboard']],
         ['admin.sliders.index',           'bi-collection-play', 'Sliders',           ['admin.sliders.*']],
         ['admin.principal.edit',          'bi-person-badge',    "Principal's message", ['admin.principal.*']],
+<<<<<<< HEAD
         ['admin.education-details.index', 'bi-book',            'Education details', ['admin.education-details.*']],
         ['admin.faculty-staff.index',     'bi-people',          'Faculty & staff', ['admin.faculty-staff.*']],
+=======
+>>>>>>> 9e527c6a216df15a236faedd9f2180225e5f0869
         ['admin.photo-galleries.index',   'bi-images',          'Photo gallery',     ['admin.photo-galleries.*', 'admin.gallery-images.*']],
         ['admin.video-galleries.index',   'bi-camera-video',    'Video gallery',     ['admin.video-galleries.*']],
         ['admin.news-events.index',       'bi-megaphone',       'News & events',     ['admin.news-events.*']],
