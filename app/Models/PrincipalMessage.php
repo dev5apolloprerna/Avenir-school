@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Uploads;
 use Illuminate\Database\Eloquent\Model;
 
 class PrincipalMessage extends Model
@@ -10,6 +11,6 @@ class PrincipalMessage extends Model
 
     public function getPhotoUrlAttribute(): ?string
     {
-        return $this->photo ? asset('storage/' . $this->photo) : null;
+        return Uploads::url($this->photo);
     }
 }

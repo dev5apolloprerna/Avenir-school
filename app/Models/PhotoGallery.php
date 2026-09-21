@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Uploads;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -23,6 +24,6 @@ class PhotoGallery extends Model
 
     public function getCoverUrlAttribute(): ?string
     {
-        return $this->cover_image ? asset('storage/' . $this->cover_image) : null;
+        return Uploads::url($this->cover_image);
     }
 }

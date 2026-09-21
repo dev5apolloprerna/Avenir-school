@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Uploads;
 use Illuminate\Database\Eloquent\Model;
 
 class NewsEvent extends Model
@@ -33,6 +34,6 @@ class NewsEvent extends Model
 
     public function getImageUrlAttribute(): ?string
     {
-        return $this->image ? asset('storage/' . $this->image) : null;
+        return Uploads::url($this->image);
     }
 }
