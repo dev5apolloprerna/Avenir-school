@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Uploads;
 use App\Traits\HasVideoUrl;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +21,6 @@ class Slider extends Model
 
     public function getImageUrlAttribute(): ?string
     {
-        return $this->image ? asset('storage/' . $this->image) : null;
+        return Uploads::url($this->image);
     }
 }

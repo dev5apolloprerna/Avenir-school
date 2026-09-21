@@ -45,7 +45,33 @@ Admin panel for a school website. Works with Laravel 10, 11 and 12 (PHP 8.1+).
 
 **Login:** `admin@school.com` / `Admin@123`  (change it on the Profile & password page after first login)
 
-> `php artisan storage:link` is required. Uploaded images are saved in `storage/app/public` and this command makes them visible in the browser.
+> On your **local** computer `php artisan storage:link` is required. Uploaded images are saved in `storage/app/public` and this command makes them visible in the browser. On the **live** server you do not need it - see "Uploads: local vs live" below.
+
+## Uploads: local vs live
+
+Where images are saved is controlled only by `.env`. The code is the same in both places.
+
+**Local (your computer)** - add nothing to `.env`. Images are saved in `storage/app/public`
+and shown from `http://127.0.0.1:8000/storage/...` (needs `php artisan storage:link`).
+
+**Live (shared hosting / cPanel)** - add these two lines to the server's `.env`:
+
+```
+UPLOAD_PATH=/home/CPANEL_USERNAME/public_html/project_name/uploads
+UPLOAD_URL=https://yourdomain.com/project_name/uploads
+```
+
+- `UPLOAD_PATH` is the real folder on the server: `public_html/project_name/folder_name`.
+  Use the full path (in cPanel File Manager it is shown at the top, starting with `/home/...`).
+- `UPLOAD_URL` is the web address of that same folder.
+- Create the `uploads` folder first and give it write permission (755, or 775 if uploads fail).
+  The app creates the sub-folders (`sliders`, `gallery/1`, ...) by itself.
+- Set both lines together. After changing `.env` on the server run `php artisan config:clear`
+  (or delete `bootstrap/cache/config.php`).
+- Moving from local to live: the database only keeps short paths like `sliders/abc.jpg`, so just
+  copy the contents of `storage/app/public` into the live uploads folder.
+
+Files that handle this: `config/uploads.php`, `app/Support/Uploads.php`, `app/Traits/ImageUploadTrait.php`.
 
 ## Uploading many images
 
@@ -67,7 +93,9 @@ app/Http/Controllers/Admin/   AuthController, DashboardController, ProfileContro
                               TestimonialController, NewsEventController
 app/Models/                   User, Slider, PrincipalMessage, PhotoGallery, GalleryImage,
                               VideoGallery, Faq, Testimonial, NewsEvent
+app/Support/Uploads.php       one place that decides where uploads are saved + their URL
 app/Traits/                   ImageUploadTrait (save/delete files), HasVideoUrl (YouTube/Vimeo helpers)
+config/uploads.php            reads UPLOAD_PATH / UPLOAD_URL from .env
 database/migrations/          9 migrations (users columns + 8 new tables)
 database/seeders/             AdminSeeder (creates the admin user)
 resources/views/layouts/      admin.blade.php (sidebar layout)
@@ -103,4 +131,3 @@ $events       = NewsEvent::active()->events()->orderBy('event_date')->get();
 - Deleting an album also deletes its image files and database rows.
 - Message / description fields are plain text. When you show them on the website use
   `{!! nl2br(e($text)) !!}` to keep line breaks safely.
-# Avenir-school
