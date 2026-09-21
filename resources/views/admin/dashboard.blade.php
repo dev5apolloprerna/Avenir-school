@@ -12,6 +12,8 @@
         ['Events',         $stats['events'],       'admin.news-events.index',     'bi-calendar-event'],
         ['FAQs',           $stats['faqs'],         'admin.faqs.index',            'bi-question-circle'],
         ['Testimonials',   $stats['testimonials'], 'admin.testimonials.index',    'bi-chat-quote'],
+        ['Education',      $stats['education'],    'admin.education-details.index', 'bi-book'],
+        ['Faculty & staff', $stats['faculty'],     'admin.faculty-staff.index',    'bi-people'],
     ];
 @endphp
 

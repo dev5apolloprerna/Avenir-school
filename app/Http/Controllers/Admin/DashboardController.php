@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
+use App\Models\EducationDetail;
+use App\Models\FacultyStaff;
 use App\Models\GalleryImage;
 use App\Models\NewsEvent;
 use App\Models\PhotoGallery;
@@ -22,6 +24,8 @@ class DashboardController extends Controller
             'videos'       => VideoGallery::count(),
             'faqs'         => Faq::count(),
             'testimonials' => Testimonial::count(),
+            'education'    => EducationDetail::count(),
+            'faculty'      => FacultyStaff::count(),
             'news'         => NewsEvent::news()->count(),
             'events'       => NewsEvent::events()->count(),
         ];

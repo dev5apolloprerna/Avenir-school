@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EducationDetailController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\FacultyStaffController;
 use App\Http\Controllers\Admin\GalleryImageController;
 use App\Http\Controllers\Admin\NewsEventController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
@@ -57,4 +59,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('faqs', FaqController::class)->except('show');
     Route::resource('testimonials', TestimonialController::class)->except('show');
     Route::resource('news-events', NewsEventController::class)->except('show');
+    Route::resource('education-details', EducationDetailController::class)->except('show');
+    Route::resource('faculty-staff', FacultyStaffController::class)->except('show');
 });
